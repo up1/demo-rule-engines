@@ -1,0 +1,22 @@
+import com.example.rules.taxifare.TaxiRide;
+import com.example.rules.taxifare.Fare;
+import java.util.*;
+
+// https://www.thansettakij.com/business/economy/552938
+
+global com.example.rules.taxifare.Fare fare;
+dialect  "mvel"
+
+rule "Calculate Taxi Fare - Scenario 1"
+    when
+        taxiRideInstance:TaxiRide(distanceKm <= 1);
+    then
+       	fare.setRideFare(40);
+end
+
+rule "Calculate Taxi Fare - Scenario 2"
+    when
+        taxiRideInstance:TaxiRide(distanceKm > 1 && distanceKm <= 10);
+    then
+       	fare.setRideFare(40 + (taxiRideInstance.distanceKm - 1) * 6.50);
+end
