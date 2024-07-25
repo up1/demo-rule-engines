@@ -1,5 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <kmodule xmlns="http://www.drools.org/xsd/kmodule">
-    <kbase name="dmn" packages="dmn-models" default="true">
+    <kbase name="rulesKBase" packages="rules">
+        <ksession name="rulesSession"/>
+    </kbase>
+    <kbase name="dmnKBase" packages="dmn-models" includes="rulesKBase">
+        <ksession name="dmnSession"/>
     </kbase>
 </kmodule>

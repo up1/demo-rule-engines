@@ -1,0 +1,13 @@
+import com.example.rules.promotions.Order;
+import com.example.rules.promotions.Product;
+import com.example.rules.promotions.Promotion;
+import java.util.List;
+
+rule "Apply 100 THB Discount by Category, Brand, and Product"
+    when
+        $order : Order( products != null, products.size() > 0 )
+        $product: Product(category != null && (category == "Electronics" || category == "Books"),
+                          brand != null && (brand == "BrandA" || brand == "BrandB")) from $order.products
+    then
+        $order.setDiscount(100);
+end

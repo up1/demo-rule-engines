@@ -24,7 +24,7 @@ public class TaxiController {
         return resultResponse;
     }
 
-    @GetMapping("/taxidmn/{distance}")
+    @GetMapping("/taxi/{distance}")
     public ResultResponse calculate(@PathVariable Double distance) {
         TaxiRide taxiRide = new TaxiRide();
         taxiRide.setDistanceKm(distance);

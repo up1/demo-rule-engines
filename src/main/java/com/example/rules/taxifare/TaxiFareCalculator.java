@@ -18,7 +18,7 @@ public class TaxiFareCalculator {
 
     public Double calculateFareWithDMN(TaxiRide taxiRide) {
         Fare rideFare = new Fare();
-        DMNRuntime dmnRuntime = KieRuntimeFactory.of(kieContainer.getKieBase()).get(DMNRuntime.class);
+        DMNRuntime dmnRuntime = kieContainer.newKieSession("dmnSession").getKieRuntime(DMNRuntime.class);
         String namespace = "https://kiegroup.org/dmn/_97604E61-7BA7-4A57-8532-A1F6DE9E71DD";
         String modelName = "demo-taxi-fare";
         DMNModel dmnModel = dmnRuntime.getModel(namespace, modelName);
@@ -35,7 +35,7 @@ public class TaxiFareCalculator {
     }
 
     public Double calculateFare(TaxiRide taxiRide, Fare rideFare) {
-        KieSession kieSession = kieContainer.newKieSession();
+        KieSession kieSession = kieContainer.newKieSession("rulesSession");
         kieSession.setGlobal("fare", rideFare);
         kieSession.insert(taxiRide);
         kieSession.fireAllRules();
