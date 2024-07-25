@@ -13,5 +13,5 @@ $mvnw clean test
 $mvnw spring-boot:run
 ```
 
-Try to test
-* GET http://localhost:8080/taxi/1
+Try to test with DMN
+* GET http://localhost:8080/taxi2/1
