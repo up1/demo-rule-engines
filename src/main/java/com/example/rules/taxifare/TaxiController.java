@@ -14,7 +14,17 @@ public class TaxiController {
         this.taxiFareCalculator = taxiFareCalculator;
     }
 
-    @GetMapping("/taxi/{distance}")
+    @GetMapping("/taxi2/{distance}")
+    public ResultResponse calculateDMN(@PathVariable Double distance) {
+        TaxiRide taxiRide = new TaxiRide();
+        taxiRide.setDistanceKm(distance);
+        Double totalFare = taxiFareCalculator.calculateFareWithDMN(taxiRide);
+
+        ResultResponse resultResponse = new ResultResponse(distance, totalFare);
+        return resultResponse;
+    }
+
+    @GetMapping("/taxidmn/{distance}")
     public ResultResponse calculate(@PathVariable Double distance) {
         TaxiRide taxiRide = new TaxiRide();
         taxiRide.setDistanceKm(distance);

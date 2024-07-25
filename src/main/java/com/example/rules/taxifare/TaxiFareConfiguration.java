@@ -9,13 +9,13 @@ import org.kie.internal.io.ResourceFactory;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 
-@Configuration
+//@Configuration
 public class TaxiFareConfiguration {
 
     public static final String drlFile = "TAXI_FARE_RULE.drl";
 
     @Bean
-    public KieContainer kieContainer() {
+    public KieContainer kieContainer1() {
         KieServices kieServices = KieServices.Factory.get();
         KieFileSystem kieFileSystem = kieServices.newKieFileSystem();
         kieFileSystem.write(ResourceFactory.newClassPathResource(drlFile));
